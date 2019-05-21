@@ -120,7 +120,7 @@ allow_bash_command_substitution=0
 # the nagios user to your /etc/sudoers.  An example entry for alllowing
 # execution of the plugins from might be:
 #
-# nagios          ALL=(ALL) NOPASSWD: /usr/lib/nagios/plugins/
+nagios          ALL=(ALL) NOPASSWD: /usr/lib/nagios/plugins/
 #
 # This lets the nagios user run all commands in that directory (and only them)
 # without asking for a password.  If you do this, make sure you don't give
@@ -135,7 +135,7 @@ allow_bash_command_substitution=0
 # syslog facility.
 # Values: 0=debugging off, 1=debugging on
 
-debug=0
+debug=1
 
 
 
