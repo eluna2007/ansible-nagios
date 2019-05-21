@@ -1,29 +1,29 @@
 # install nagios server
 – hosts: local
-name: nagios
-remote_user: nagiosadmin
-state:latest
+  name: nagios
+  remote_user: nagiosadmin
+  state:latest
 
 # install apache
 
 – hosts: webservers
-vars:
-http_port: 80
-remote_user: root
-tasks:
+  vars:
+  http_port: 80
+  remote_user: root
+  tasks:
 – name: ensure apache is at the latest version
-yum: name=httpd state=latest
+  yum: name=httpd state=latest
 
 – name: ensure apache is running (and enable it at boot)
-service: name=httpd state=started enabled=yes
-handlers:
+  service: name=httpd state=started enabled=yes
+  handlers:
 – name: restart apache
-service: name=httpd state=restarted
+  service: name=httpd state=restarted
 
 – name: Install nagios, nrpe, nagios-plugins-all
-yum: name={{item}} state=present
-with_items:
-– nagios
-– nrpe
-– nagios-plugins-all
-– openssl
+  yum: name={{item}} state=present
+  with_items:
+  – nagios
+  – nrpe
+  – nagios-plugins-all
+  – openssl
