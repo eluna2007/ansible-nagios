@@ -219,7 +219,7 @@
   become: true
 
 - name: Start nagios service
-  command: systemctl restart nagios.service
+  command: systemctl start nagios.service
   when: nagios_needs_restart != 0
   become: true
 
@@ -235,7 +235,7 @@
   become: true
 
 - name: Restart HTTPD service
-  command: systemctl restart httpd.service
+  command: systemctl start httpd.service
   ignore_errors: true
   when: nagios_needs_restart !=0
   become: true
