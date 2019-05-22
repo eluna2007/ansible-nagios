@@ -123,7 +123,7 @@
   become: true
 
 - name: Generate the nagios monitoring templates
-  template: src={{ item + ".j2" }}
+  template: src={{ item }}.j2
             dest=/etc/nagios/conf.d/{{ item }}
   with_items:
     - oobservers.cfg
