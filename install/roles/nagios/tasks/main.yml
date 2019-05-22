@@ -143,21 +143,28 @@
 #  become: true
 
 - name: Generate the nagios contact template and localhost config
-  template: src={{ item + ".j2" }}
-            dest=/etc/nagios/objects/{{ item }}
-  with_items:
+  #template: src={{ item + ".j2" }}
+  #          dest=/etc/nagios/objects/{{ item }}
+  #with_items:
  #   - contacts.cfg
-    - localhost.cfg
+ #   - localhost.cfg
+  #become: true
+  copy: src=/usr/tmp/localhost.cfg  dest=/etc/nagios/objects/localhost.cfg
+  force: yes
   become: true
-
+- name: copy nagios.cfg to /etc/nagios
+  copy: src=/usr/tmp/nagios.cfg  dest=/etc/nagios/nagios.cfg
+  become: true
 - name: Generate the nagios user CGI template
-  template: src={{ item + ".j2" }}
-            dest=/etc/nagios/{{ item }}
-  with_items:
-    - cgi.cfg
+  #template: src={{ item + ".j2" }}
+  #         dest=/etc/nagios/{{ item }}
+  #with_items:
+  #  - cgi.cfg
   #  - services.cfg
+  #become: true
+  copy: src=/usr/tmp/cgi.cfg  dest=/etc/nagios/cgi.cfg
+  force: yes
   become: true
-
 # SELinux boolean for nagios
 - name: Apply SELinux boolean nagios_run_sudo
   seboolean: name=nagios_run_sudo state=yes persistent=yes
