@@ -220,7 +220,7 @@
 
 - name: Start nagios service
   command: systemctl start nagios.service
-  when: nagios_needs_restart != 0
+  #when: nagios_needs_restart != 0
   become: true
 
 - name: Set nagios to start on boot
@@ -237,5 +237,5 @@
 - name: Restart HTTPD service
   command: systemctl start httpd.service
   ignore_errors: true
-  when: nagios_needs_restart !=0
+  #when: nagios_needs_restart !=0
   become: true
