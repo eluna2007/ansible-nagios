@@ -122,31 +122,31 @@
     - ipmi.cfg
   become: true
 
-- name: Generate the nagios monitoring templates
-  template: src={{ item }}.j2
-            dest=/etc/nagios/conf.d/{{ item }}
-  with_items:
-    - oobservers.cfg
-    - switches.cfg
-    - webservers.cfg
-    - servers.cfg
-    - commands.cfg
-    - elkservers.cfg
-    - elasticsearch.cfg
-    - idrac.cfg
-    - supermicro-6018r.cfg
-    - supermicro-6048r.cfg
-    - supermicro-1028r.cfg
-    - jenkins.cfg
-    - dns.cfg
-  register: nagios_needs_restart
-  become: true
+#- name: Generate the nagios monitoring templates
+#  template: src={{ item }}.j2
+#            dest=/etc/nagios/conf.d/{{ item }}
+#  with_items:
+#    - oobservers.cfg
+#    - switches.cfg
+#    - webservers.cfg
+#    - servers.cfg
+#    - commands.cfg
+#    - elkservers.cfg
+#    - elasticsearch.cfg
+#    - idrac.cfg
+#    - supermicro-6018r.cfg
+#    - supermicro-6048r.cfg
+#    - supermicro-1028r.cfg
+#    - jenkins.cfg
+#    - dns.cfg
+#  register: nagios_needs_restart
+#  become: true
 
 - name: Generate the nagios contact template and localhost config
   template: src={{ item + ".j2" }}
             dest=/etc/nagios/objects/{{ item }}
   with_items:
-    - contacts.cfg
+ #   - contacts.cfg
     - localhost.cfg
   become: true
 
@@ -155,7 +155,7 @@
             dest=/etc/nagios/{{ item }}
   with_items:
     - cgi.cfg
-    - services.cfg
+  #  - services.cfg
   become: true
 
 # SELinux boolean for nagios
