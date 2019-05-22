@@ -149,11 +149,10 @@
  #   - contacts.cfg
  #   - localhost.cfg
   #become: true
-  copy: src=/usr/tmp/localhost.cfg  dest=/etc/nagios/objects/localhost.cfg
-  force: yes
+  copy: src=/usr/tmp/localhost.cfg  dest=/etc/nagios/objects/localhost.cfg force=yes
   become: true
 - name: copy nagios.cfg to /etc/nagios
-  copy: src=/usr/tmp/nagios.cfg  dest=/etc/nagios/nagios.cfg
+  copy: src=/usr/tmp/nagios.cfg  dest=/etc/nagios/nagios.cfg force=yes
   become: true
 - name: Generate the nagios user CGI template
   #template: src={{ item + ".j2" }}
@@ -162,8 +161,7 @@
   #  - cgi.cfg
   #  - services.cfg
   #become: true
-  copy: src=/usr/tmp/cgi.cfg  dest=/etc/nagios/cgi.cfg
-  force: yes
+  copy: src=/usr/tmp/cgi.cfg  dest=/etc/nagios/cgi.cfg force=yes
   become: true
 # SELinux boolean for nagios
 - name: Apply SELinux boolean nagios_run_sudo
